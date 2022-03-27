@@ -1,6 +1,15 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-
+import Home from '../views/Home.vue';
+import Impressum from '../views/Impressum.vue';
+import Access from '../views/Access.vue';
+import Help from '../views/Help.vue';
+import Auktionen from '../views/Auktionen.vue';
+import Produkte from '../views/Produkte.vue';
+import CardView from '../views/CardView.vue';
+import About from '../views/About.vue';
+import Profile from '../views/Profile.vue';
+import Admin from '../views/Admin.vue';
 
 Vue.use(VueRouter);
 

@@ -66,10 +66,12 @@
 </template>
 
 <script>
+import AuctionModal from './AuctionModal.vue';
 
 export default {
   name: 'Navbar',
   components: {
+    AuctionModal,
   },
   created() {
     console.log(this.$store.state.loggedIn);
