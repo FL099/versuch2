@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
-const baseLink = "localhost:8081";
+const baseLink = 'http://localhost:8081';
 
 function parseJwt(token) {
   try {
@@ -189,7 +189,7 @@ export default new Vuex.Store({
     },
     async loginUser({ commit, state }, userObj) {
       console.log("Trying to log in user with Email: " + userObj.email);
-      await axios.post(baseLink + "/auth", userObj )
+      await axios.post(baseLink + '/auth', userObj )
       .then((response) => {
         if (response.status == 200) {
           console.error("Login erfolgreich");
@@ -221,7 +221,7 @@ export default new Vuex.Store({
     },
     async registerUser({ commit, state }, registerObj) {
       await axios
-        .post(baseLink + "/user", registerObj)
+        .post('localhost:8081/user', registerObj)
         .then(response => {
           if (response.status == 201) {
             this.responseMessage = "Registrierung erfolgreich";
