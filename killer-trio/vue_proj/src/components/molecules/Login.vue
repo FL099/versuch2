@@ -34,7 +34,7 @@
           > Eingeloggt bleiben</label
         >
       </div>
-      <button type="submit" v-on:click="loginUser" class="btn btn-primary">Login</button>
+      <button type="button" v-on:click="loginUser" class="btn btn-primary">Login</button>
       <p class="text-primary">{{ responseMessage }}</p>
     </form>
   </div>

@@ -189,15 +189,32 @@ export default new Vuex.Store({
     },
     async loginUser({ commit, state }, userObj) {
       console.log("Trying to log in user with Email: " + userObj.email);
-      console.log("Trying to log in user with PW: " + userObj.password);
-
-      await axios.post(baseLink + '/auth', userObj)
-      .then(function (response) {
-        console.log("-----Das kam zurück:---" + response);
+      await axios.post(baseLink + "/auth", userObj )
+      .then((response) => {
+        if (response.status == 200) {
+          commit('updateLoginState', true);
+          commit('updateAccessToken', response.data);
+          const jwtDetails = parseJwt(response.data);
+          console.log(jwtDetails);
+          commit('updateRole', jwtDetails.roles);
+          console.log("Rolle: "+state.role);
+        }
+        else
+        {
+          console.log("Probiers nochmal!");
+          commit('updateLoginState', false);
+        }
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch((error) => {
+          if (error.response.status === 400) {
+            // handle 400
+            console.log("Email stimmt nicht");
+          }
+          else {
+            // error others
+            console.log("Ein unerwartetes Problem ist aufgetreten, bitte versuchen Sie es in einigen Minuten erneut.");
+          }
+        });
     },
     async registerUser({ commit, state }, registerObj) {
       await axios
