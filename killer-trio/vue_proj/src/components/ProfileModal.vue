@@ -56,17 +56,16 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   data() {
     return {
       form: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        address: '',
-        plz:'',
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        address: this.address,
+        plz: this.plz,
         password: '',
       },
       responseMessage: this.responseMessage,
@@ -81,29 +80,28 @@ export default {
       fileReader.readAsDataURL(file);
       fileReader.onloadend = () => {
         this.$data.selectedFile = fileReader.result;
-        // console.log('imageAsBase64String: ', this.$data.selectedFile);
       };
     },
       submitP (){
-      this.$store.dispatch('submitForm', this.form);        
+      this.$store.dispatch('submitForm', this.props);        
     }
   },
 
   name: 'ProfileModal',
   props: {
-    vorname: {
+    firstName: {
       type: String,
       default: "Max"
     },
-    nachname: {
+    lastName: {
     type: String,
     default: "Mustermann"
     },
     email: {
       type: String,
-      default: "musterman@gmail.com"
+      default: "muster@mail.com"
     },
-    adresse: {
+    address: {
       type: String,
       default: "Stephansplatz 1"
     },

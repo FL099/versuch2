@@ -32,7 +32,7 @@ export default new Vuex.Store({
       "roles": "USER",
       "profilepic": null
     },
-    users: null,
+    users: [],
     accessToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcmVyZXJAdGVzdC5hdCIsInJvbGVzIjoiVVNFUiIsIm5hbWUiOiJ0ZXN0dXNlcmVyZXJAdGVzdC5hdCIsImlzcyI6IkRyaW5rTWFya2V0IiwiZXhwIjoxNjQ0ODcyOTI5fQ.BAVKSYZiphNHnCYV0HM5S6qOhIuRkzD07VzCT5H_Jlk',
     refreshToken: '',
     role: ''
@@ -185,7 +185,9 @@ export default new Vuex.Store({
         });
     },
     async deleteUser({ commit, state}, id){
-      await axios.delete(baseLink + `/user/${id}`, { headers: { Authorization: `Bearer ${state.accessToken}` } })
+      console.log(`Versuche User mit der ID ${id} zu löschen`);
+      console.log("link = " + baseLink + `/user/${id}`);
+      await axios.delete(baseLink + `/user/${id}`, { headers: { Authorization: `Bearer ${state.accessToken}` }})
         .then((response) => {
           console.log('User '+ response.data.firstName + ' gelöscht')
         }).catch((response) => {
@@ -251,9 +253,8 @@ export default new Vuex.Store({
         headers: { Authorization: `Bearer ${state.accessToken}` }})
       .then((res) => {
 
-        console.log("Die ID: ", idToLoad);
+        console.log("Die ID: ");
         console.log(res.data);
-        alert(res.data.json);
         this.offers = res.data;
       })
       .catch((err) => console.log(err));
