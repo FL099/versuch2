@@ -18,8 +18,8 @@
                         <td>Maximalmenge</td>
                     </tr>
           </thead>
-          <tbody v-for="product in products" :key="product.Id">
-            <tr>
+          <tbody>
+            <tr v-for="product in products" :key="product.Id">
               <td>{{ product.Id }}</td>
               <td>{{ product.name }}</td>
               <td>{{ product.contents }}</td>
