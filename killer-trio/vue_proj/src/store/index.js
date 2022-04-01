@@ -30,7 +30,7 @@ export default new Vuex.Store({
       "address": "123 straße",
       "locked": "false",
       "roles": "USER",
-      "profilepic": null
+      "profilepic": "logo.png"
     },
     users: null,
     accessToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcmVyZXJAdGVzdC5hdCIsInJvbGVzIjoiVVNFUiIsIm5hbWUiOiJ0ZXN0dXNlcmVyZXJAdGVzdC5hdCIsImlzcyI6IkRyaW5rTWFya2V0IiwiZXhwIjoxNjQ0ODcyOTI5fQ.BAVKSYZiphNHnCYV0HM5S6qOhIuRkzD07VzCT5H_Jlk',
@@ -86,6 +86,7 @@ export default new Vuex.Store({
           }
           else
           {
+            console.log("auction submitted");
             // dann ist es eine aktive auktion
             state.activeAuctions.push(auction);
           }
@@ -166,14 +167,14 @@ export default new Vuex.Store({
       commit('updateUsers', users.data);
     },
     async getAllUsers({ commit, state }) {
-      await axios.get(baseLink + '/user', { headers: { Authorization: `Bearer ${state.accessToken}` } })
+      const users = await axios.get(baseLink + '/user', { headers: { Authorization: `Bearer ${state.accessToken}` } })
       .then((response) => {
         commit('updateUsers', response.data);
       }).catch((error) => {
         console.log('Could not retrieve data from API! \n Response: ' + error.response.status);
       });
-     
-      
+
+
     },
     async getUserById({ commit, state }, id) {
       await axios.get(baseLink + `/user/${id}`, { headers: { Authorization: `Bearer ${state.accessToken}` } })

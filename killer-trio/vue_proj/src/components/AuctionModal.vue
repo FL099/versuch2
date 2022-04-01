@@ -65,6 +65,7 @@
               required
             />
           </div>
+
           <label for="startDateTime" class="col-form-label">Start Date Time:</label>
           <div class="input-group mb-3 date">
             <input
@@ -86,7 +87,10 @@
               v-model="auction.endDate"
               required
             />
+
           </div>
+
+
           <!--
           <label for="description" class="col-form-label">Description:</label>
           <div class="input-group mb-3">
@@ -94,6 +98,7 @@
                    v-model="value" required>
           </div>
           -->
+
           <label for="minAmount" class="col-form-label">Minimum Amount:</label>
           <div class="input-group mb-3 date">
             <input
@@ -142,8 +147,6 @@
 </template>
 
 <script>
-import VueSlideBar from "vue-slide-bar";
-
 export default {
   data() {
     return {
@@ -158,24 +161,17 @@ export default {
       }
     };
   },
+
   methods: {
-    convert(str) {
-      var date = new Date(str),
-        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-        day = ("0" + date.getDate()).slice(-2);
-      return [date.getFullYear(), mnth, day].join("-");
-    },
     submitAuction() {
-      startDate = convert(startDate);
-      eendDate = convert(startDate);
-      //endDate = startDate.format('YYYY-MM-DD');
+      console.log(endDate);
+      endDate = moment().format("YYYY-MM-DD hh:mm:ss");
       this.store.dispatch("updateAuctions", this.form);
     }
   },
   name: "AuctionModal",
   props: ["title", "text", "btnText"],
   components: {
-    VueSlideBar
   }
 };
 </script>
