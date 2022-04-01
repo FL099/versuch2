@@ -166,7 +166,7 @@ export default new Vuex.Store({
       commit('updateUsers', users.data);
     },
     async getAllUsers({ commit, state }) {
-      const users = await axios.get(baseLink + '/user', { headers: { Authorization: `Bearer ${state.accessToken}` } })
+      await axios.get(baseLink + '/user', { headers: { Authorization: `Bearer ${state.accessToken}` } })
       .then((response) => {
         commit('updateUsers', response.data);
       }).catch((error) => {

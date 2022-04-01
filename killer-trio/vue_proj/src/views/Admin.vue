@@ -29,7 +29,7 @@
                       ⚙️
                   </button>
                   <ProfileModal
-                    :vorname = this.user.vorname 
+                    :vorname = user.vorname 
                     :nachname = user.nachname
                     :email = user.email
                     :address = user.address
@@ -51,12 +51,13 @@ export default {
     components:{
     ProfileModal,
   },
-    created(){
+  created(){
     this.$store.dispatch('getAllUsers');
 
   },
-  computed:{
+  computed:{ 
     users(){
+      console.log("Übersicht: " + this.$store.state.users[0]);
       return this.$store.state.users;
     },
   },
