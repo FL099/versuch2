@@ -83,7 +83,7 @@
               type="date"
               class="form-control"
               id="endDateTime"
-              placeholder="Enter End Date Time."
+              placeholder="2020-12-31"
               v-model="auction.endDate"
               required
             />
@@ -155,7 +155,7 @@ export default {
         minPrice: "",
         maxPrice: "",
         startDate: new Date(),
-        endDate: new Date(),
+        endDate: new Date("yyyy-MM-dd"),
         minAmount: "",
         maxAmount: ""
       }
@@ -164,8 +164,6 @@ export default {
 
   methods: {
     submitAuction() {
-      console.log(endDate);
-      endDate = moment().format("YYYY-MM-DD hh:mm:ss");
       this.store.dispatch("updateAuctions", this.form);
     }
   },

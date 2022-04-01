@@ -15,11 +15,16 @@
         <div class="modal-body">
           <p>Starting Price: {{minPrice}}</p>
           <form class="m-5" style="text-align: left;">
+           <!--
             <TextInput
               :labelText="'Bid Amount'"
               :helpText="'Highest Bidder receives the product'"
               :type="'number'"
             ></TextInput>
+-->
+             <label for="minPrice">Bid Price Amount: </label>
+            <input type="number" class="form-control" name="minPrice" id="minPrice" v-model="offer.minPrice">
+
           </form>
         </div>
         <div class="modal-footer">
@@ -37,7 +42,9 @@ import TextInput from "./atoms/TextInput.vue";
 export default {
   data() {
     return {
-      value: 50
+      offer: {
+
+      },
     };
   },
   name: "Modal",

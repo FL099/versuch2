@@ -24,6 +24,19 @@
               <td>{{ product.name }}</td>
               <td>{{ product.contents }}</td>
               <td>{{ product.category }}</td>
+              <td>
+                <button class="btn badge rounded-pill bg-secondary" data-bs-toggle="modal" :data-bs-target="'#change' + product.id">
+                      ⚙️
+                  </button>
+
+                  <ProduktModal
+                    :name = product.name
+                    :contents = product.contents
+                    :description = product.description
+                    :category = product.category
+                    :id= "'change' + product.id"
+                    />
+              </td>
             </tr>
           </tbody>
         </table>
@@ -32,11 +45,11 @@
 </template>
 
 <script>
-
+import ProduktModal from "../components/ProduktModal.vue";
 export default {
   name: 'Produkte',
   components:{
-    
+ProduktModal,
   },
   created(){
     this.$store.dispatch('getProducts');
