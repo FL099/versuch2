@@ -11,12 +11,12 @@
         <div class="modal-body">
           <label for="vorname" class="col-form-label">Vorname</label>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" id="vorname" placeholder:vorname
+            <input type="text" class="form-control" id="vorname" placeholder:lastName
                    v-model="form.firstName" required>
           </div>
           <label for="nachname" class="col-form-label">Nachname</label>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" id="nachname" placeholder:nachname
+            <input type="text" class="form-control" id="nachname" placeholder:firstName
                    v-model="form.lastName" required>
           </div>
           <label for="mail" class="col-form-label">Email</label>
@@ -26,7 +26,7 @@
           </div>
           <label for="address" class="col-form-label">Adressdaten</label>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" id="address" placeholder:adresse
+            <input type="text" class="form-control" id="address" placeholder:address
                    v-model="form.address" required>
           </div>
           

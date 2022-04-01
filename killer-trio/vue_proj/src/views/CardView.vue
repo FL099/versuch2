@@ -128,21 +128,11 @@ export default {
     });
     console.log("Mindestangebot: " + minOfferPrice);
     this.auctionMinPrice = minOfferPrice;
-
+    var _this = this.$store;
     // load offers from store
     setInterval(function () {
-      axios
-        .get(`http://localhost:8081/offers/byAuction/${idToLoad}`, {})
-        .then((res) => {
-          /**
-           * Load offers
-           */
-          console.log('Die ID: ', idToLoad);
-          console.log(res.data);
-          this.offers = res.data;
-        })
-        .catch((err) => console.log(err));
-    }, 3000);
+      _this.dispatch('refreshAuctions', idToLoad);
+    }, 10000);
   },
 };
 </script>

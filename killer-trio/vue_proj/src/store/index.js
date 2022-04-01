@@ -259,6 +259,14 @@ export default new Vuex.Store({
         this.offers = res.data;
       })
       .catch((err) => console.log(err));
+    },
+    async refreshAuctions({commit, state}, idToLoad){
+      await axios.get(baseLink+ `/offers/byAuction/${idToLoad}`)
+      .then((res) => {
+        console.log('Auktionen für ID: ', idToLoad, ' aktualisiert');
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
     }
   },
   modules: {
