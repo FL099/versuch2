@@ -8,9 +8,9 @@
     <form class="m-5" style="text-align: left;">
       <label for="email">Email</label>
       <input type="text" class="form-control" name="email" id="email" v-model="form.email" placeholder="some@1.at">
-      
+
       <label for="password">Passwort</label>
-      <input type="text" class="form-control" name="password" id="password" v-model="form.password" placeholder="1234">
+      <input type="password" class="form-control" name="password" id="password" v-model="form.password" placeholder="1234">
 
       <!--<TextInput
         :labelText="'Email'"

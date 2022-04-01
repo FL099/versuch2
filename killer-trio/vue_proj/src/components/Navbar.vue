@@ -40,9 +40,9 @@
           <router-link to="/profile" class="nav-link">Profil</router-link>
           <AuctionModal
             class="my-1"
-            :title="'Auction Modal'"
+            :title="'Auction Creation'"
             :text="'exampletest'"
-            :btnText="'do it'"
+            :btnText="'submit auction'"
             id="auctionModal"
           />
 
@@ -54,7 +54,7 @@
             Auction Erstellen
           </button>
           <router-link to="/admin" class="nav-link"><button class="btn btn-success mx-2">Admin</button></router-link>
-          <button 
+          <button
           class="btn btn-danger mx-2 position-absolute end-0"
           v-on:click="logout">
             log out
