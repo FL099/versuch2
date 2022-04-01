@@ -65,7 +65,8 @@ export default {
       deleteUser(id){
           this.$store.dispatch('deleteUser', id);
           this.$store.dispatch('getAllUsers');  
-          this.$router.go(0)
+          //this.$router.go(0);
+
       }
   }
 }

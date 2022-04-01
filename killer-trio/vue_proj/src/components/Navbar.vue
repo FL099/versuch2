@@ -74,7 +74,6 @@ export default {
     AuctionModal,
   },
   created() {
-    console.log(this.$store.state.loggedIn);
   },
   methods: {
     logout() {

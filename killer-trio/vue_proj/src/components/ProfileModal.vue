@@ -26,13 +26,13 @@
           </div>
           <label for="address" class="col-form-label">Adressdaten</label>
           <div class="input-group mb-3">
-            <input type="number" class="form-control" id="address" placeholder:adresse
+            <input type="text" class="form-control" id="address" placeholder:adresse
                    v-model="form.address" required>
           </div>
           
           <label for="zipcode" class="col-form-label">Postleitzahl</label>
           <div class="input-group mb-3 date">
-            <input type="date" class="form-control" id="zipcode" placeholder:plz
+            <input type="number" class="form-control" id="zipcode" placeholder:plz
                    v-model="form.plz" required>
           </div>
           
@@ -56,17 +56,16 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   data() {
     return {
       form: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        address: '',
-        plz:'',
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        address: this.address,
+        plz: this.plz,
         password: '',
       },
       responseMessage: this.responseMessage,
@@ -81,29 +80,28 @@ export default {
       fileReader.readAsDataURL(file);
       fileReader.onloadend = () => {
         this.$data.selectedFile = fileReader.result;
-        // console.log('imageAsBase64String: ', this.$data.selectedFile);
       };
     },
       submitP (){
-      this.$store.dispatch('submitForm', this.form);        
+      this.$store.dispatch('submitForm', this.props);        
     }
   },
 
   name: 'ProfileModal',
   props: {
-    vorname: {
+    firstName: {
       type: String,
       default: "Max"
     },
-    nachname: {
+    lastName: {
     type: String,
     default: "Mustermann"
     },
     email: {
       type: String,
-      default: "musterman@gmail.com"
+      default: "muster@mail.com"
     },
-    adresse: {
+    address: {
       type: String,
       default: "Stephansplatz 1"
     },
