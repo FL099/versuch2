@@ -26,13 +26,13 @@
           </div>
           <label for="address" class="col-form-label">Adressdaten</label>
           <div class="input-group mb-3">
-            <input type="number" class="form-control" id="address" placeholder:adresse
+            <input type="text" class="form-control" id="address" placeholder:adresse
                    v-model="form.address" required>
           </div>
           
           <label for="zipcode" class="col-form-label">Postleitzahl</label>
           <div class="input-group mb-3 date">
-            <input type="date" class="form-control" id="zipcode" placeholder:plz
+            <input type="number" class="form-control" id="zipcode" placeholder:plz
                    v-model="form.plz" required>
           </div>
           
