@@ -260,8 +260,19 @@ export default new Vuex.Store({
       })
       .catch((err) => console.log(err));
     },
+    async createAuction({commit, state}, auction){
+      await axios.post(baseLink+ "/auctions/", auction, {
+        headers: { Authorization: `Bearer ${state.accessToken}` }})
+        .then((res) => {
+          console.log("Erfolgreich")
+
+        })
+        .catch((err) => console.error("da ist was schiefgelaufen: ", err))
+    }
+    ,
     async refreshAuctions({commit, state}, idToLoad){
-      await axios.get(baseLink+ `/offers/byAuction/${idToLoad}`)
+      await axios.get(baseLink+ `/offers/byAuction/${idToLoad}`, {
+        headers: { Authorization: `Bearer ${state.accessToken}` }})
       .then((res) => {
         console.log('Auktionen für ID: ', idToLoad, ' aktualisiert');
         console.log(res.data);

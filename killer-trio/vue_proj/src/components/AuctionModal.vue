@@ -28,7 +28,7 @@
               name="product"
               id="itemtitle"
               placeholder="Enter Title."
-              v-model="auction.title"
+              v-model="auction.product"
               required
             />
           </div>
@@ -72,9 +72,10 @@
               type="date"
               class="form-control"
               id="startDateTime"
-              placeholder="Enter Start Date Time."
+              placeholder="2022-4-1"
               v-model="auction.startDate"
               required
+              @change="datestuff"
             />
           </div>
           <label for="endDateTime" class="col-form-label">End Date Time:</label>
@@ -151,20 +152,27 @@ export default {
   data() {
     return {
       auction: {
-        title: "",
+        product: "",
         minPrice: "",
         maxPrice: "",
-        startDate: new Date(),
-        endDate: new Date("yyyy-MM-dd"),
+        startDate: "",
+        endDate: "",
         minAmount: "",
-        maxAmount: ""
+        maxAmount: "",
+        creatorId: this.$store.state.user.id,
       }
     };
   },
 
   methods: {
     submitAuction() {
-      this.store.dispatch("updateAuctions", this.form);
+      this.$store.dispatch("createAuction", this.auction);
+    },
+    datestuff(){
+      var temp = document.querySelector('#startDateTime');
+      console.log("Current value: ", temp.value)
+      console.log(typeof temp.value);
+      console.log("creatorId: ", this.$store.state.user.id)
     }
   },
   name: "AuctionModal",

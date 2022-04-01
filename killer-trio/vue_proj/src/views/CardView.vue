@@ -130,7 +130,7 @@ export default {
     this.auctionMinPrice = minOfferPrice;
     var _this = this.$store;
     // load offers from store
-    setInterval(function () {
+    var refresher = setInterval(function () {
       _this.dispatch('refreshAuctions', idToLoad);
     }, 10000);
   },
