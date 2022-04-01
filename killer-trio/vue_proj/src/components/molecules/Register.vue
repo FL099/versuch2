@@ -58,7 +58,7 @@
           />
         </div>
       </div>
-      <button type="submit" v-on:click="registerUser" class="btn btn-primary">Registrieren</button>
+      <button type="button" v-on:click="registerUser" class="btn btn-primary">Registrieren</button>
       <p class="text-primary">{{ responseMessage }}</p>
     </form>
   </div>

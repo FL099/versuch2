@@ -166,9 +166,14 @@ export default new Vuex.Store({
       commit('updateUsers', users.data);
     },
     async getAllUsers({ commit, state }) {
-      const users = await axios.get(baseLink + '/user', { headers: { Authorization: `Bearer ${state.accessToken}` } });
-      if (!users) { console.log('Could not retrieve data from API'); }
-      commit('updateUsers', users.data);
+      const users = await axios.get(baseLink + '/user', { headers: { Authorization: `Bearer ${state.accessToken}` } })
+      .then((response) => {
+        commit('updateUsers', response.data);
+      }).catch((error) => {
+        console.log('Could not retrieve data from API! \n Response: ' + error.response.status);
+      });
+     
+      
     },
     async getUserById({ commit, state }, id) {
       await axios.get(baseLink + `/user/${id}`, { headers: { Authorization: `Bearer ${state.accessToken}` } })
@@ -218,7 +223,7 @@ export default new Vuex.Store({
     },
     async registerUser({ commit, state }, registerObj) {
       await axios
-        .post('localhost:8081/user', registerObj)
+        .post(baseLink + "/user", registerObj)
         .then(response => {
           if (response.status == 201) {
             this.responseMessage = "Registrierung erfolgreich";
