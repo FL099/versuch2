@@ -4,7 +4,7 @@
       <div class="col-1"></div>
       <div class="col-4">
         <div>
-          <img class="img-fluid" :src="auction.image_url" :alt="auction.product" />
+          <img class="img-fluid" height = "200" width = "100" :src="auction.image_url" :alt="auction.product" />
           <br />
           <h6 class="badge rounded-pill bg-secondary">User: {{ user }}</h6>
         </div>
@@ -109,12 +109,7 @@ export default {
 
     let minOfferPrice = this.auction.minPrice ?? 0;
 
-<<<<<<< HEAD
-    this.$store.state.offers.forEach(offer => {
-      console.log("Hi ich bin ein loop");
-=======
     this.$store.state.offers.forEach((offer) => {
->>>>>>> d4d63046baefd31d94753f9da524d535203c60b0
       console.log(offer.auctionId);
       if (offer.auctionId == idToLoad) {
         console.log("Match: " + idToLoad);

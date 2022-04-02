@@ -64,6 +64,7 @@ export default new Vuex.Store({
             bier: "https://www.pngplay.com/wp-content/uploads/4/Beer-Transparent-Free-PNG.png",
             sprite:
               "https://www.pngplay.com/wp-content/uploads/4/Sprite-Background-PNG-Image.png",
+            vodka: "https://www.pngplay.com/wp-content/uploads/12/Vodka-Transparent-Images-Clip-Art.png",
           };
 
           for (const [key, value] of Object.entries(auctions_products)) {

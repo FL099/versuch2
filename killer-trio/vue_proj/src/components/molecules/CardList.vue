@@ -1,8 +1,8 @@
 <template>
   <div class="row">
-    <div class="d-flex flex-wrap flex-column justify-content-center">
+    <div class="d-flex flex-wrap justify-content-center" height="200">
       <div v-bind:key="auction.id" v-for="auction in auctions">
-        <OfferCard class="m-2" :auction="auction" :name="auction.product"/>
+        <OfferCard class="m-2"  :auction="auction" :name="auction.product"/>
       </div>
     </div>
   </div>
