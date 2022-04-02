@@ -109,12 +109,7 @@ export default {
 
     let minOfferPrice = this.auction.minPrice ?? 0;
 
-<<<<<<< HEAD
-    this.$store.state.offers.forEach(offer => {
-      console.log("Hi ich bin ein loop");
-=======
     this.$store.state.offers.forEach((offer) => {
->>>>>>> d4d63046baefd31d94753f9da524d535203c60b0
       console.log(offer.auctionId);
       if (offer.auctionId == idToLoad) {
         console.log("Match: " + idToLoad);
