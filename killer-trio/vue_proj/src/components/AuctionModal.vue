@@ -88,9 +88,7 @@
               v-model="auction.endDate"
               required
             />
-
           </div>
-
 
           <!--
           <label for="description" class="col-form-label">Description:</label>
@@ -155,8 +153,8 @@ export default {
         product: "",
         minPrice: "",
         maxPrice: "",
-        startDate: "",
-        endDate: "",
+        startDateTime: "",
+        endDateTime: "",
         minAmount: "",
         maxAmount: "",
         creatorId: this.$store.state.user.id,
@@ -166,6 +164,7 @@ export default {
 
   methods: {
     submitAuction() {
+      checkdate(this.auction);
       this.$store.dispatch("createAuction", this.auction);
     },
     datestuff(){
@@ -173,7 +172,12 @@ export default {
       console.log("Current value: ", temp.value)
       console.log(typeof temp.value);
       console.log("creatorId: ", this.$store.state.user.id)
-    }
+    },
+        checkdate(auction) {
+      if (auction.startDate > auction.endDate) {
+        alert('Auction start date must preceed auction end Date');
+      }}
+
   },
   name: "AuctionModal",
   props: ["title", "text", "btnText"],

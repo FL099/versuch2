@@ -3,7 +3,7 @@
     <div
       class="p-5 bg-image grayscale"
       style="
-        background-image: url('https://i.pinimg.com/originals/07/72/a0/0772a0b869ef1df9b03fbdc57debf034.jpg');
+        background-image: url('https://www.casinos.at/fileadmin/_processed_/6/3/csm_bar-und-casino_18f00a99e0.jpg');
         background-color: rgba(255, 255, 255, 0.3);
       "
     >
@@ -18,6 +18,7 @@
             p-5
             border
             m-4
+
           "
           style="background-color: rgba(255, 255, 255, 0.6)"
         >
