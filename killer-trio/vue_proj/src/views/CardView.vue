@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Modal from '../components/Modal.vue';
 import AuctionModal from '../components/AuctionModal.vue';
 import Picture from '../components/atoms/Picture.vue';
@@ -110,13 +109,13 @@ export default {
     this.$store.state.auctions.forEach((auction) => {
       if (auction.id == idToLoad) {
         this.auction = auction;
+        this.user = auction.creatorId;
       }
     });
 
   let minOfferPrice = this.auction.minPrice ?? 0;
 
     this.$store.state.offers.forEach((offer) => {
-      console.log("Hi ich bin ein loop");
       console.log(offer.auctionId);
       if (offer.auctionId == idToLoad) {
         console.log("Match: " +idToLoad);
@@ -132,7 +131,7 @@ export default {
     // load offers from store
     var refresher = setInterval(function () {
       _this.dispatch('refreshAuctions', idToLoad);
-    }, 10000);
+    }, 30000);
   },
 };
 </script>
