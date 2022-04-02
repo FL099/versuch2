@@ -16,6 +16,7 @@
                         <td>Menge</td>
                         <td>Kategorie</td>
                         <td>Maximalmenge</td>
+                        <td>Verwalten</td>
                     </tr>
           </thead>
           <tbody>
@@ -24,10 +25,11 @@
               <td>{{ product.name }}</td>
               <td>{{ product.contents }}</td>
               <td>{{ product.category }}</td>
+              <td>{{ product.maxAmount }}</td>
               <td>
                 <button class="btn badge rounded-pill bg-secondary" data-bs-toggle="modal" :data-bs-target="'#change' + product.id">
-                      ⚙️
-                  </button>
+                  ⚙️
+                </button>
 
                   <ProduktModal
                     :name = product.name
