@@ -18,7 +18,7 @@
       >
         <h1 class="fw-bold fs-1">{{ auction.product.toUpperCase() }}</h1>
         <p class="fs-3">
-          Mindestangebot: €{{ this.auctionMinPrice }}
+          Mindestangebot: €{{ this.auctionMinPrice  + ",00"}}
         </p>
 
         <button
@@ -29,8 +29,8 @@
           {{ "AUF " + auction.product.toUpperCase() + " BIETEN" }}
         </button>
         <Modal
-          :title="auction.product"
-          :text="'exampletest'"
+          :title="this.auction.product"
+          :text="'offerexampletest'"
           :btnText="'Bid Now'"
           :minPrice="this.auctionMinPrice"
           id="bietenButton"

@@ -52,8 +52,7 @@ export default new Vuex.Store({
         console.log("Die Ganze Auktion: " + auction.id);
 
         // default images
-        if (auction.image_url == undefined || auction.image_url == '')
-        {
+        if (auction.image_url == undefined || auction.image_url == '') {
           auction.image_url = "https://media.istockphoto.com/vectors/missing-rubber-stamp-vector-vector-id1213374148?k=20&m=1213374148&s=612x612&w=0&h=A3_Ku27Jf_XRfsWCZYvwJWQGNR2hbHDh9ViLLaAdJ5w=";
           console.log("Fall Back Bilder");
           // fallback bilder
@@ -75,24 +74,20 @@ export default new Vuex.Store({
         }
 
         // if startime isset
-        if (auction.startTime !== null)
-        {
+        if (auction.startTime !== null) {
           let auctionStartTime = new Date(auction.startTime);
-          if (auctionStartTime < currentDate)
-          {
+          if (auctionStartTime < currentDate) {
             // dann ist es eine vergangene auktion
             console.log("Verganene Auktion: " + auction.startTime);
             state.pastAuctions.push(auction);
           }
-          else
-          {
+          else {
             console.log("auction submitted");
             // dann ist es eine aktive auktion
             state.activeAuctions.push(auction);
           }
         }
-        else
-        {
+        else {
           console.log("Diese Auktion hat kein Startdatum:" + auction.id);
         }
         state.auctions.push(auction);
@@ -168,11 +163,11 @@ export default new Vuex.Store({
     },
     async getAllUsers({ commit, state }) {
       const users = await axios.get(baseLink + '/user', { headers: { Authorization: `Bearer ${state.accessToken}` } })
-      .then((response) => {
-        commit('updateUsers', response.data);
-      }).catch((error) => {
-        console.log('Could not retrieve data from API! \n Response: ' + error.response.status);
-      });
+        .then((response) => {
+          commit('updateUsers', response.data);
+        }).catch((error) => {
+          console.log('Could not retrieve data from API! \n Response: ' + error.response.status);
+        });
 
 
     },
@@ -185,35 +180,34 @@ export default new Vuex.Store({
           console.log(`Could not retrieve data from API - Response code: ${response}`);
         });
     },
-    async deleteUser({ commit, state}, id){
+    async deleteUser({ commit, state }, id) {
       console.log(`Versuche User mit der ID ${id} zu löschen`);
       console.log("link = " + baseLink + `/user/${id}`);
-      await axios.delete(baseLink + `/user/${id}`, { headers: { Authorization: `Bearer ${state.accessToken}` }})
+      await axios.delete(baseLink + `/user/${id}`, { headers: { Authorization: `Bearer ${state.accessToken}` } })
         .then((response) => {
-          console.log('User '+ response.data.firstName + ' gelöscht')
+          console.log('User ' + response.data.firstName + ' gelöscht')
         }).catch((response) => {
           console.log(`löschen fehlgeschlagen, Fehler-code: ${response}`);
         });
     },
     async loginUser({ commit, state }, userObj) {
       console.log("Trying to log in user with Email: " + userObj.email);
-      await axios.post(baseLink + "/auth", userObj )
-      .then((response) => {
-        if (response.status == 200) {
-          commit('updateLoginState', true);
-          commit('updateAccessToken', response.data);
-          const jwtDetails = parseJwt(response.data);
-          console.log(jwtDetails);
-          commit('updateRole', jwtDetails.roles);
-          console.log("Rolle: "+state.role);
-        }
-        else
-        {
-          console.log("Probiers nochmal!");
-          commit('updateLoginState', false);
-        }
-      })
-      .catch((error) => {
+      await axios.post(baseLink + "/auth", userObj)
+        .then((response) => {
+          if (response.status == 200) {
+            commit('updateLoginState', true);
+            commit('updateAccessToken', response.data);
+            const jwtDetails = parseJwt(response.data);
+            console.log(jwtDetails);
+            commit('updateRole', jwtDetails.roles);
+            console.log("Rolle: " + state.role);
+          }
+          else {
+            console.log("Probiers nochmal!");
+            commit('updateLoginState', false);
+          }
+        })
+        .catch((error) => {
           if (error.response.status === 400) {
             // handle 400
             console.log("Email stimmt nicht");
@@ -248,21 +242,23 @@ export default new Vuex.Store({
           }
         });
     },
-    async submitForm({commit, state}, formdata){
+    async submitForm({ commit, state }, formdata) {
       await axios
-      .put(baseLink+"/user/3",  formdata, {
-        headers: { Authorization: `Bearer ${state.accessToken}` }})
-      .then((res) => {
+        .put(baseLink + "/user/3", formdata, {
+          headers: { Authorization: `Bearer ${state.accessToken}` }
+        })
+        .then((res) => {
 
-        console.log("Die ID: ");
-        console.log(res.data);
-        this.offers = res.data;
-      })
-      .catch((err) => console.log(err));
+          console.log("Die ID: ");
+          console.log(res.data);
+          this.offers = res.data;
+        })
+        .catch((err) => console.log(err));
     },
-    async createAuction({commit, state}, auction){
-      await axios.post(baseLink+ "/auctions/", auction, {
-        headers: { Authorization: `Bearer ${state.accessToken}` }})
+    async createAuction({ commit, state }, auction) {
+      await axios.post(baseLink + "/auctions/", auction, {
+        headers: { Authorization: `Bearer ${state.accessToken}` }
+      })
         .then((res) => {
           console.log("Erfolgreich")
 
@@ -270,14 +266,25 @@ export default new Vuex.Store({
         .catch((err) => console.error("da ist was schiefgelaufen: ", err))
     }
     ,
-    async refreshAuctions({commit, state}, idToLoad){
-      await axios.get(baseLink+ `/offers/byAuction/${idToLoad}`, {
-        headers: { Authorization: `Bearer ${state.accessToken}` }})
-      .then((res) => {
-        console.log('Auktionen für ID: ', idToLoad, ' aktualisiert');
-        console.log(res.data);
+    async createOffer({ commit, state }, offer) {
+      await axios.post(baseLink + "/offers/", offer, {
+        headers: { Authorization: `Bearer ${state.accessToken}` }
       })
-      .catch((err) => console.log(err));
+        .then((res) => {
+          console.log("offer submitted sucessfully to backend")
+        })
+        .catch((err) => console.error("error caught whilst submitting offer: ", err))
+    },
+
+    async refreshAuctions({ commit, state }, idToLoad) {
+      await axios.get(baseLink + `/offers/byAuction/${idToLoad}`, {
+        headers: { Authorization: `Bearer ${state.accessToken}` }
+      })
+        .then((res) => {
+          console.log('Auktionen für ID: ', idToLoad, ' aktualisiert');
+          console.log(res.data);
+        })
+        .catch((err) => console.log(err));
     }
   },
   modules: {
