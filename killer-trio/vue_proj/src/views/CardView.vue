@@ -4,7 +4,7 @@
       <div class="col-1"></div>
       <div class="col-4">
         <div>
-          <img class="img-fluid" :src="auction.image_url" :alt="auction.product" />
+          <img class="img-fluid" height = "200" width = "100" :src="auction.image_url" :alt="auction.product" />
           <br />
           <h6 class="badge rounded-pill bg-secondary">User: {{ user }}</h6>
         </div>
