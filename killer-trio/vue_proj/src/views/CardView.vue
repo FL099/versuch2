@@ -17,12 +17,13 @@
       </div>
       <div class="col-6 d-flex justify-content-center flex-column text-start p-4">
         <h1 class="fw-bold fs-1">{{ auction.product.toUpperCase() }}</h1>
-        <p class="fs-3">Mindestangebot: €{{ this.auctionMinPrice + ",00"}}</p>
         <div v-if="this.$store.state.loggedIn">
           <div v-if="this.$store.state.pastAuctions.includes(this.auction)">
-            <router-link to="/access" class="nav-link">auction done</router-link>
+            <p class="fs-3">Auction Complete: €{{ this.auctionMinPrice + "xx"}}</p>
+            <router-link to="/auktionen" class="nav-link">Back to Auctions</router-link>
           </div>
           <div v-else>
+            <p class="fs-3">Mindestangebot: €{{ this.auctionMinPrice + ",00"}}</p>
             <button
               data-bs-toggle="modal"
               class="btn btn-primary p-2 shadow fs-4 fw-bold"
@@ -38,7 +39,7 @@
           </div>
         </div>
         <div v-else>
-          <router-link to="/auktionen" class="nav-link">Login zum Bieten</router-link>
+          <router-link to="/access" class="nav-link">Login zum Bieten</router-link>
         </div>
       </div>
     </div>
