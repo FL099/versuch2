@@ -4,35 +4,36 @@
         <div>
         <table class="table">
           <thead>
-                    <tr>
-                        <td>Id</td>
-                        <td>Auktion</td>
-                        <td>Menge</td>
-                        <td>Preis</td>
-                        <td>Lieferdatum</td>
-                        <td>Status</td>
-                    </tr>
+            <tr>
+              <td>Id</td>
+              <td>Auktion</td>
+              <td>Menge</td>
+              <td>Preis</td>
+              <td>Lieferdatum</td>
+              <td>Status</td>
+            </tr>
           </thead>
           <tbody>
-            <tr v-for="product in products" :key="product.Id">
-              <td>{{ offers.id }}</td>
-              <td>{{ offers.auctionId }}</td>
-              <td>{{ offers.amount }}</td>
-              <td>{{ offers.price }}</td>
-              <td>{{ offers.deliveryDate }}</td>
-              <td>{{ offers.state }}</td>
+            <tr v-for="offer in offers" :key="offer.Id">
+              <td>{{ offer.id }}</td>
+              <td>{{ offer.auctionId }}</td>
+              <td>{{ offer.amount }}</td>
+              <td>{{ offer.price }}</td>
+              <td>{{ offer.deliveryDate }}</td>
+              <td>{{ offer.state }}</td>
               <td>
-                <button class="btn badge rounded-pill bg-secondary" data-bs-toggle="modal" :data-bs-target="'#change' + product.id">
+                <button class="btn badge rounded-pill bg-secondary" data-bs-toggle="modal" :data-bs-target="'#create' +offer.id">
                   ⚙️
                 </button>
 
-                  <!--<ProduktModal
-                    :name = product.name
-                    :contents = product.contents
-                    :description = product.description
-                    :category = product.category
-                    :id= "'change' + product.id"
-                    />-->
+                  <OfferModal
+                    :tid = offer.id
+                    :amount = offer.amount
+                    :price = offer.price
+                    :deliveryDare = offer.deliveryDate
+                    :state = offer.state
+                    :id = "'create' + offer.id"
+                    />
               </td>
             </tr>
           </tbody>
@@ -42,11 +43,11 @@
 </template>
 
 <script>
-import ProduktModal from "../components/ProduktModal.vue";
+import OfferModal from "../components/OfferModal.vue";
 export default {
   name: 'Offers',
   components:{
-    ProduktModal,
+    OfferModal,
   },
   created(){
     this.$store.dispatch('getOffersForUser', this.$store.state.user.id);

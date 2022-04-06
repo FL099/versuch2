@@ -184,7 +184,7 @@ export default new Vuex.Store({
         });
     },
     async getOffersForUser({ commit, state }, id){
-      await axios.get(baseLink + `/offers/byUser/${id}`, { headers: { Authorization: `Bearer ${state.accessToken}` } })
+      await axios.get(baseLink + `/offers/byUser/38`, { headers: { Authorization: `Bearer ${state.accessToken}` } })
         .then((response) => {
           console.log("offers: ", response.data);
           commit('updateUOffers', response.data);
@@ -280,6 +280,15 @@ export default new Vuex.Store({
     ,
     async createOffer({ commit, state }, offer) {
       await axios.post(baseLink + "/offers/", offer, {
+        headers: { Authorization: `Bearer ${state.accessToken}` }
+      })
+        .then((res) => {
+          console.log("offer submitted sucessfully to backend")
+        })
+        .catch((err) => console.error("error caught whilst submitting offer: ", err))
+    },
+    async updateOffer({ commit, state }, offer) {
+      await axios.post(baseLink + "/offers/" + offer.id, offer, {
         headers: { Authorization: `Bearer ${state.accessToken}` }
       })
         .then((res) => {

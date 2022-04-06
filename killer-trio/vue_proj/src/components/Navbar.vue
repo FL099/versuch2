@@ -37,7 +37,8 @@
           <router-link to="/auktionen" class="nav-link">Auktionen</router-link>
           |
           <router-link to="/produkte" class="nav-link">Produkte</router-link> |
-          <router-link to="/profile" class="nav-link">Profil</router-link>
+          <router-link to="/profile" class="nav-link">Profil</router-link> |
+          <router-link to="/offers" class="nav-link">Offers</router-link>
           <AuctionModal
             class="my-1"
             :title="'Auction Creation'"
