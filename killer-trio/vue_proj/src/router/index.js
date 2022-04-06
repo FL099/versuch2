@@ -9,6 +9,7 @@ import Produkte from '../views/Produkte.vue';
 import CardView from '../views/CardView.vue';
 import About from '../views/About.vue';
 import Profile from '../views/Profile.vue';
+import Offers from '../views/Offers.vue';
 import Admin from '../views/Admin.vue';
 
 Vue.use(VueRouter);
@@ -47,6 +48,11 @@ const routes = [
     path: '/auktionen',
     name: 'Auktionen',
     component: Auktionen,
+  },
+  {
+    path: '/offers',
+    name: 'Angebote',
+    component: Offers,
   },
   {
     path: '/produkte',
