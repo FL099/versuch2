@@ -33,6 +33,7 @@ export default new Vuex.Store({
       "profilepic": "logo.png"
     },
     users: [],
+    uoffers:[],
     accessToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcmVyZXJAdGVzdC5hdCIsInJvbGVzIjoiVVNFUiIsIm5hbWUiOiJ0ZXN0dXNlcmVyZXJAdGVzdC5hdCIsImlzcyI6IkRyaW5rTWFya2V0IiwiZXhwIjoxNjQ0ODcyOTI5fQ.BAVKSYZiphNHnCYV0HM5S6qOhIuRkzD07VzCT5H_Jlk',
     refreshToken: '',
     role: ''
@@ -98,6 +99,9 @@ export default new Vuex.Store({
     },
     updateOffers(state, offers) {
       state.offers = offers;
+    },
+    updateUOffers(state, offers) {
+      state.uoffers = offers;
     },
     updateUsers(state, users) {
       state.users = users;
@@ -168,14 +172,21 @@ export default new Vuex.Store({
         }).catch((error) => {
           console.log('Could not retrieve data from API! \n Response: ' + error.response.status);
         });
-
-
     },
     async getUserById({ commit, state }, id) {
       await axios.get(baseLink + `/user/${id}`, { headers: { Authorization: `Bearer ${state.accessToken}` } })
         .then((response) => {
           console.log(`textual response in call: ${response}`);
           commit('getUserById', response.data);
+        }).catch((response) => {
+          console.log(`Could not retrieve data from API - Response code: ${response}`);
+        });
+    },
+    async getOffersForUser({ commit, state }, id){
+      await axios.get(baseLink + `/offers/byUser/${id}`, { headers: { Authorization: `Bearer ${state.accessToken}` } })
+        .then((response) => {
+          console.log("offers: ", response.data);
+          commit('updateUOffers', response.data);
         }).catch((response) => {
           console.log(`Could not retrieve data from API - Response code: ${response}`);
         });

@@ -38,7 +38,7 @@
     <div class="tab-content" id="tab-content">
       
       <div
-        class="tab-pane fade"
+        class="tab-pane fade show active"
         id="login"
         role="tabpanel"
         aria-labelledby="login-tab"
@@ -46,7 +46,7 @@
         <Login class="content"/>
       </div>
       <div
-        class="tab-pane fade show active"
+        class="tab-pane fade"
         id="register"
         role="tabpanel"
         aria-labelledby="register-tab"
@@ -58,15 +58,15 @@
 </template>
 
 <script>
-import Register from '../components/molecules/Register.vue';
 import Login from '../components/molecules/Login.vue';
+import Register from '../components/molecules/Register.vue';
 import Greeting from '../components/molecules/Greeting.vue';
 
 export default {
   name: 'Access',
   components: {
-    Register,
     Login,
+    Register,
     Greeting,
   },
 };
