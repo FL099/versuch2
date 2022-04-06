@@ -38,7 +38,7 @@
           </div>
         </div>
         <div v-else>
-          <router-link to="/access" class="nav-link">Login zum Bieten</router-link>
+          <router-link to="/auktionen" class="nav-link">Login zum Bieten</router-link>
         </div>
       </div>
     </div>
