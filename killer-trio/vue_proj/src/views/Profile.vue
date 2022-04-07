@@ -34,11 +34,11 @@
           Daten ändern
         </button>
         <ProfileModal
-          :vorname = vorname 
-          :nachname = nachname
-          :email = email
-          :adresse = adresse
-          :plz = plz
+          :firstName = user.firstName 
+          :lastName = user.lastName
+          :email = user.email
+          :address = user.address
+          :plz = user.plz
           id="profilButton"
         />
       </div>
@@ -55,30 +55,9 @@ export default {
     ProfileModal,
   },
   created(){
-    this.$store.dispatch('getUsers');
+    
   },
-  props: {
-    vorname: {
-      type: String,
-      default: "Max"
-    },
-    nachname: {
-    type: String,
-    default: "Mustermann"
-    },
-    email: {
-      type: String,
-      default: "musterman@gmail.com"
-    },
-    adresse: {
-      type: String,
-      default: "Stephansplatz 1"
-    },
-    plz: {
-      type: Number,
-      default: 1010
-    }
-  },
+  
   computed: {
     user(){
       console.log(this.$store.state.user);

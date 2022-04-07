@@ -83,7 +83,7 @@ export default {
       };
     },
       submitP (){
-      this.$store.dispatch('submitForm', this.props);        
+      this.$store.dispatch('submitForm', this.form);        
     }
   },
 

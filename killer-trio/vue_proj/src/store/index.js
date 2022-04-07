@@ -278,7 +278,7 @@ export default new Vuex.Store({
     },
     async submitForm({ commit, state }, formdata) {
       await axios
-        .put(baseLink + "/user/3", formdata, {
+        .put(baseLink + "/user/" + this.state.user.id, formdata, {
           headers: { Authorization: `Bearer ${state.accessToken}` }
         })
         .then((res) => {
