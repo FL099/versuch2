@@ -9,10 +9,11 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Id: {{ offer.id }}</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Product: {{ title }}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <h6>Id: {{ offer.id }}</h6>
           <form class="m-5" style="text-align: left;">
             <!--
             <TextInput
@@ -32,13 +33,7 @@
             />
 
             <label for="price">Preis</label>
-            <input
-              type="number"
-              class="form-control"
-              name="price"
-              id="price"
-              v-model="offer.price"
-            />
+            <input type="number" class="form-control" name="price" id="price" v-model="offer.price" />
 
             <label for="deliveryDate" class="col-form-label">Delivery Date:</label>
             <div class="input-group mb-3 date">
@@ -52,14 +47,7 @@
               />
             </div>
 
-            <label for="state">Status</label>
-            <input
-              type="text"
-              class="form-control"
-              name="state"
-              id="state"
-              v-model="offer.state"
-            />
+            <label for="status">Status: {{offer.status}}</label>
           </form>
         </div>
         <div class="modal-footer">
@@ -79,24 +67,31 @@ export default {
     return {
       offer: {
         id: this.tid,
-        //auctionId: this.auctionId,
+        auctionId: this.auctionId,
         amount: this.amount,
         price: this.price,
         deliveryDate: this.deliveryDate,
-        //creatorId: this.creatorId,
-        state: this.state,
+        creatorId: this.$store.state.user.id,
+        state: this.state
       }
     };
   },
   name: "OfferModal",
   props: {
+    offerType: {
+      type: Number,
+      default: 0,
+    },
+    title: {
+      type: String,
+      default: " "
+    },
     tid: {
       type: Number,
       default: 1
     },
     auctionId: {
       type: Number,
-      default: 1
     },
     amount: {
       type: Number,
@@ -112,20 +107,27 @@ export default {
     },
     creatorId: {
       type: Number,
-      default: 1
     },
-    state: {
+    status: {
       type: String,
-      default: ""
-    },
-    
+      default: "Auf Lager"
+    }
   },
   components: {
     TextInput
   },
   methods: {
     submitOffer() {
-      this.$store.dispatch("updateOffer", this.offer);
+      console.log("this" + this.$store.state.user.id);
+      console.log(this.offerType);
+      if ((this.offerType == 0)) {
+        console.log("type = 0")
+        this.$store.dispatch("updateOffer", this.offer);
+      } else {
+        console.log("type = 1")
+        console.log(this.offer);
+        this.$store.dispatch("createOffer", this.offer);
+      }
     }
   }
 };
