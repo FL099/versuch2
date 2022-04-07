@@ -139,7 +139,7 @@ export default new Vuex.Store({
       window.location.href = "/access";
     },
     updateUser(state, user) {
-      state.user = Object.assign(user, state.user);
+      state.user = user;
     },
   },
   actions: {
@@ -170,6 +170,8 @@ export default new Vuex.Store({
       const users = await axios.get(baseLink + '/user', { headers: { Authorization: `Bearer ${state.accessToken}` } })
         .then((response) => {
           commit('updateUsers', response.data);
+          console.log("Daten:");
+          console.log(response.data);
         }).catch((error) => {
           console.log('Could not retrieve data from API! \n Response: ' + error.response.status);
         });
@@ -212,6 +214,16 @@ export default new Vuex.Store({
           console.log(`löschen fehlgeschlagen, Fehler-code: ${response}`);
         });
     },
+    async getUserData({ commit, state}, mail){
+      await this.dispatch("getAllUsers");
+      this.state.users.forEach(iuser => {
+        if(iuser.email == mail ){
+          commit('updateUser', iuser);
+          console.log("mail: ", iuser.email, " id: ", iuser.id);
+        }
+      });
+      console.log(this.state.user);
+    },
     async loginUser({ commit, state }, userObj) {
       console.log("Trying to log in user with Email: " + userObj.email);
       await axios.post(baseLink + "/auth", userObj)
@@ -221,8 +233,8 @@ export default new Vuex.Store({
             commit('updateAccessToken', response.data);
             const jwtDetails = parseJwt(response.data);
             console.log(jwtDetails);
+            this.dispatch('getUserData', jwtDetails.name);
             commit('updateRole', jwtDetails.roles);
-            console.log("Rolle: " + state.role);
           }
           else {
             console.log("Probiers nochmal!");
