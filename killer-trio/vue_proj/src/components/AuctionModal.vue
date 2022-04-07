@@ -20,6 +20,7 @@
                    v-model="categoryId" required>
           </div>
           -->
+
           <label for="itemtitle" class="col-form-label">Title:</label>
           <div class="input-group mb-3">
             <input
@@ -73,7 +74,7 @@
               class="form-control"
               id="startDateTime"
               placeholder="2022-4-1"
-              v-model="auction.startDate"
+              v-model="auction.startTime"
               required
               @change="datestuff"
             />
@@ -85,11 +86,34 @@
               class="form-control"
               id="endDateTime"
               placeholder="2020-12-31"
-              v-model="auction.endDate"
+              v-model="auction.endTime"
               required
             />
           </div>
 
+          <label for="minDelDate" class="col-form-label">Minimum Delivery Date:</label>
+          <div class="input-group mb-3 date">
+            <input
+              type="date"
+              class="form-control"
+              id="minDelDate"
+              placeholder="2022-4-1"
+              v-model="auction.minDelDate"
+              required
+              @change="datestuff"
+            />
+          </div>
+          <label for="maxDelDate" class="col-form-label">Maxiumum Delivery Date:</label>
+          <div class="input-group mb-3 date">
+            <input
+              type="date"
+              class="form-control"
+              id="maxDelDate"
+              placeholder="2020-12-31"
+              v-model="auction.maxDelDate"
+              required
+            />
+          </div>
           <!--
           <label for="description" class="col-form-label">Description:</label>
           <div class="input-group mb-3">
@@ -153,35 +177,43 @@ export default {
         product: "",
         minPrice: "",
         maxPrice: "",
-        startDateTime: "",
-        endDateTime: "",
+        startTime: "",
+        endTime: "",
         minAmount: "",
         maxAmount: "",
-        creatorId: this.$store.state.user.id,
+        minDelDate: "",
+        maxDelDate: "",
+        creatorId: this.$store.state.user.id
       }
     };
   },
 
   methods: {
     submitAuction() {
-      checkdate(this.auction);
-      this.$store.dispatch("createAuction", this.auction);
+      var d1 = document.querySelector("#startDateTime").value;
+      var d2 = document.querySelector("#endDateTime").value;
+      if (d1 > d2) {
+        alert("The start date must preceed the end date");
+      } else {
+        console.log("in 2 loop");
+        this.$store.dispatch("createAuction", this.auction);
+      }
     },
-    datestuff(){
-      var temp = document.querySelector('#startDateTime');
-      console.log("Current value: ", temp.value)
+    datestuff() {
+      var temp = document.querySelector("#startDateTime");
+      console.log("Current value: ", temp.value);
       console.log(typeof temp.value);
-      console.log("creatorId: ", this.$store.state.user.id)
-    },
-        checkdate(auction) {
-      if (auction.startDate > auction.endDate) {
-        alert('Auction start date must preceed auction end Date');
-      }}
-
+      console.log("creatorId: ", this.$store.state.user.id);
+    }
   },
   name: "AuctionModal",
   props: ["title", "text", "btnText"],
-  components: {
-  }
+  components: {}
 };
 </script>
+
+<style scoped>
+.error-border {
+  border: 1px solid red;
+}
+</style>

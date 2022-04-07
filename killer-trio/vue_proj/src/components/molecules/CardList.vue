@@ -7,7 +7,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import OfferCard from './OfferCard.vue';
 
