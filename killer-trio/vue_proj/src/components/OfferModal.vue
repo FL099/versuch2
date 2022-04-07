@@ -64,7 +64,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" @click="submitOffer" class="btn btn-primary">Submit</button>
+          <button type="button" v-on:click="submitOffer" class="btn btn-primary">Submit</button>
         </div>
       </div>
     </div>

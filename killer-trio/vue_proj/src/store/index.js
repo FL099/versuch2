@@ -184,7 +184,17 @@ export default new Vuex.Store({
         });
     },
     async getOffersForUser({ commit, state }, id){
-      await axios.get(baseLink + `/offers/byUser/38`, { headers: { Authorization: `Bearer ${state.accessToken}` } })
+      console.log("Id I'm trying: " + id)
+      await axios.get(baseLink + `/offers/byUser/${id}`, { headers: { Authorization: `Bearer ${state.accessToken}` } })
+        .then((response) => {
+          console.log("offers: ", response.data);
+          commit('updateUOffers', response.data);
+        }).catch((response) => {
+          console.log(`Could not retrieve data from API - Response code: ${response}`);
+        });
+    },
+    async getOffersForAuction({ commit, state }, id){
+      await axios.get(baseLink + `/offers/bybyAuction/38`, { headers: { Authorization: `Bearer ${state.accessToken}` } })
         .then((response) => {
           console.log("offers: ", response.data);
           commit('updateUOffers', response.data);
@@ -288,7 +298,7 @@ export default new Vuex.Store({
         .catch((err) => console.error("error caught whilst submitting offer: ", err))
     },
     async updateOffer({ commit, state }, offer) {
-      await axios.post(baseLink + "/offers/" + offer.id, offer, {
+      await axios.put(baseLink + "/offers/" + offer.id, offer, {
         headers: { Authorization: `Bearer ${state.accessToken}` }
       })
         .then((res) => {
