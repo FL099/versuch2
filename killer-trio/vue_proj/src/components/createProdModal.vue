@@ -80,3 +80,58 @@
     </div>
   </div>
 </template>
+
+
+<script>
+export default {
+  data() {
+    return {
+      product: {
+        name: this.name,
+        category: this.category,
+        contents: this.contents,
+        description: this.description,
+      },
+      responseMessage: this.responseMessage
+    };
+  },
+  methods: {
+    onPhotoChanged(e) {
+      const file = e.target.files[0];
+      this.$data.url = URL.createObjectURL(file);
+
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onloadend = () => {
+        this.$data.selectedFile = fileReader.result;
+      };
+    },
+    submitP() {
+      this.$store.dispatch("submitForm", this.props);
+    }
+  },
+
+  name: "createProductModal",
+  props: {
+    name: {
+      type: String,
+      default: "Prod name"
+    },
+    contents: {
+      type: Number,
+      default: 4
+    },
+    category: {
+      type: String,
+      default: "Alcohol"
+    },
+    description: {
+      type: String,
+      default: "prod description"
+    }
+  },
+  components: {}
+};
+</script>
+
+

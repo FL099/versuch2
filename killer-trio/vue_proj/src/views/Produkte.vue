@@ -1,12 +1,28 @@
 <template>
     <div class="px-4">
-        <h1>Produkte <button> + </button></h1>
+        <h1>Produkte </h1>
         <div>
         <div class="p-2">
-        Auf dieser Seite werden sämtliche Produkt Kategorien aufgezeigt. <br />
+                  <div>
+            <button
+            id="addProduct"
+              data-bs-toggle="modal"
+              class="btn btn-primary p-2 shadow fs-4 fw-bold"
+              data-bs-target="#offerButton"
+            > + </button>
+            <createProdModal
+              :text="'offerexampletest'"
+              :btnText="'Add Product'"
+              :title="'create New product'"
+              id="offerButton"
+            />
+            </div>
+            <div>
+                Auf dieser Seite werden sämtliche Produkt Kategorien aufgezeigt. <br />
         Auch in jedem der Produktbeschreibungen findet sich eine Liste mit
         Beispiel-Produkten aus diesem Segment.
 
+              </div>
         </div>
         <table class="table">
           <thead>
@@ -48,10 +64,13 @@
 
 <script>
 import ProduktModal from "../components/ProduktModal.vue";
+import createProdModal from "../components/createProdModal.vue";
+
 export default {
   name: 'Produkte',
   components:{
 ProduktModal,
+createProdModal,
   },
   created(){
     this.$store.dispatch('getProducts');
@@ -66,6 +85,11 @@ ProduktModal,
 </script>
 
 <style scoped>
+
+button{
+align-items: left;
+}
+
     h2{
         text-align: left;
     }
