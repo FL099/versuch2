@@ -90,6 +90,7 @@ export default {
         category: this.category,
         contents: this.contents,
         description: this.description,
+        id: this.pid
       },
       responseMessage: this.responseMessage
     };
@@ -106,11 +107,12 @@ export default {
       };
     },
     submitP() {
-      this.$store.dispatch("submitForm", this.props);
+      console.log("Es geht los:")
+      this.$store.dispatch("updateProduct", this.product);
     }
   },
 
-  name: "ProfileModal",
+  name: "ProduktModal",
   props: {
     name: {
       type: String,
@@ -127,6 +129,10 @@ export default {
     description: {
       type: String,
       default: "prod description"
+    },
+    pid: {
+      type: Number,
+      default: 0
     }
   },
   components: {}

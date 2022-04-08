@@ -30,6 +30,7 @@
                         <td>Id</td>
                         <td>Produkt</td>
                         <td>Menge</td>
+                        <td>Beschreibung</td>
                         <td>Kategorie</td>
                         <td>Maximalmenge</td>
                         <td>Verwalten</td>
@@ -40,6 +41,7 @@
               <td>{{ product.Id }}</td>
               <td>{{ product.name }}</td>
               <td>{{ product.contents }}</td>
+              <td>{{ product.description }}</td>
               <td>{{ product.category }}</td>
               <td>{{ product.maxAmount }}</td>
               <td>
@@ -48,6 +50,7 @@
                 </button>
 
                   <ProduktModal
+                    :pid = product.Id
                     :name = product.name
                     :contents = product.contents
                     :description = product.description

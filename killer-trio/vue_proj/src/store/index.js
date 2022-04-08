@@ -159,7 +159,17 @@ export default new Vuex.Store({
       const products = await axios.get(baseLink + '/products/all/', { headers: { Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtLXdlQGV3cncuZmF0Iiwicm9sZXMiOiJVU0VSIiwibmFtZSI6Im0td2VAZXdydy5mYXQiLCJpc3MiOiJEcmlua01hcmtldCIsImV4cCI6MTY0MjYxNTMyNn0.vhO_wCweQEAc-yXMg45HWZ7aXRZEM6ncb-VIBHQ7bi4` } });
       if (!products) { console.log('Could not retrieve data from API'); }
       commit('updateProducts', products.data);
-
+    },
+    async updateProduct({ commit, state}, product){
+      console.log("itsa me");
+      console.log("pid:", product.id);
+      await axios.put(baseLink + "/products/" + product.id, product, {
+        headers: { Authorization: `Bearer ${state.accessToken}` }
+      }).then(
+        (response) => {
+          this.dispatch('getProducts');
+        }
+      )
     },
     async getUsers({ commit, state }) {
       const users = await axios.get(baseLink + '/user', { headers: { Authorization: `Bearer ${state.accessToken}` } });
