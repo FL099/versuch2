@@ -27,7 +27,7 @@
             <button
               data-bs-toggle="modal"
               class="btn btn-primary p-2 shadow fs-4 fw-bold"
-              data-bs-target="#offerButton"
+              data-bs-target="#createProductButton"
             >{{ "AUF " + auction.product.toUpperCase() + " BIETEN" }}</button>
             <OfferModal
             :test ="this.auction.id"
@@ -38,7 +38,7 @@
               :text="'offerexampletest'"
               :btnText="'Bid Now'"
               :title="this.auction.product"
-              id="offerButton"
+              id="createProductButton"
             />
           </div>
         </div>
