@@ -216,7 +216,7 @@ export default new Vuex.Store({
         });
     },
     async getOffersForAuction({ commit, state }, id){
-      await axios.get(baseLink + `/offers/bybyAuction/38`, { headers: { Authorization: `Bearer ${state.accessToken}` } })
+      await axios.get(baseLink + `/offers/bybyAuction/${id}`, { headers: { Authorization: `Bearer ${state.accessToken}` } })
         .then((response) => {
           console.log("offers: ", response.data);
           commit('updateUOffers', response.data);
@@ -243,6 +243,13 @@ export default new Vuex.Store({
         }
       });
       console.log(this.state.user);
+    },
+    async lockUser({ commit, state }, userObj){
+      console.log("lockStatus:",userObj.locked);
+      await axios
+      .put(baseLink + "/user/" + userObj.id, userObj, {
+        headers: { Authorization: `Bearer ${state.accessToken}` }
+      })
     },
     async loginUser({ commit, state }, userObj) {
       console.log("Trying to log in user with Email: " + userObj.email);

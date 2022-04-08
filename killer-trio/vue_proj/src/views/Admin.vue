@@ -21,6 +21,13 @@
               <td>{{ user.email }}</td>
               <td>{{ user.plz }}</td>
               <td>
+                <button v-if="user.locked" v-on:click="lockUser(user)" class="btn badge rounded-pill bg-success">
+                  🔓
+                </button>
+                  <button v-else v-on:click="lockUser(user)" class="btn badge rounded-pill bg-warning">
+                      🔒
+                  </button>
+                  &nbsp;
                   <button v-on:click="deleteUser(user.id)" class="btn badge rounded-pill bg-danger">
                       X
                   </button>
@@ -65,8 +72,18 @@ export default {
       deleteUser(id){
           this.$store.dispatch('deleteUser', id);
           this.$store.dispatch('getAllUsers');  
-          //this.$router.go(0);
+      },
+      lockUser(user){
+        if(user.locked == true)
+        {
+          user.locked = false
+        }
+        else{
+          user.locked = true
+        }
 
+          this.$store.dispatch('lockUser', user);
+          this.$store.dispatch('getAllUsers');  
       }
   }
 }
