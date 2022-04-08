@@ -1,10 +1,10 @@
 <template>
   <div class="px-4">
-    <h1>Auktionen</h1>
+    <h1>Auktionen</h1> 
     <div v-if="this.$store.state.activeAuctions.length > 0">
-      <h2>Laufende Auktionen</h2>
+      <h2>Laufende Auktionen</h2> 
       <CardList :auctions="this.$store.state.activeAuctions" />
-    </div>
+    </div> 
     <div v-if="this.$store.state.pastAuctions.length > 0">
       <h2>Vergangene Auktionen</h2>
       <CardList :auctions="this.$store.state.pastAuctions" />
