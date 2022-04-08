@@ -24,17 +24,17 @@ export default new Vuex.Store({
     products: ['{\n"Id": 26,\n"name": "testprodttukt1",\n "productpic": "",\n"description": null,\n "contents": 3,\n"category": null,\n "id": 26 \n}'],
     user: {
       "id": 1,
-      "firstName": "Maximus",
+      "firstName": "Max",
       "lastName": "Mustermann",
-      "email": "m-we@qwfsderf.fat",
-      "address": "123 straße",
+      "email": "example@mail.com",
+      "address": "123 Straße",
       "locked": "false",
       "roles": "USER",
       "profilepic": "logo.png"
     },
     users: [],
     uoffers:[],
-    accessToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcmVyZXJAdGVzdC5hdCIsInJvbGVzIjoiVVNFUiIsIm5hbWUiOiJ0ZXN0dXNlcmVyZXJAdGVzdC5hdCIsImlzcyI6IkRyaW5rTWFya2V0IiwiZXhwIjoxNjQ0ODcyOTI5fQ.BAVKSYZiphNHnCYV0HM5S6qOhIuRkzD07VzCT5H_Jlk',
+    accessToken: '',
     refreshToken: '',
     role: ''
   },
@@ -242,7 +242,7 @@ export default new Vuex.Store({
           }
         })
         .catch((error) => {
-          if (error.response.status === 400) {
+          if (error.response.status == 400) {
             // handle 400
             console.log("Email stimmt nicht");
           }
