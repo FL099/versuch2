@@ -36,6 +36,21 @@
               :minPrice="this.auctionMinPrice"
               id="bietenButton"
             />
+            <button
+              data-bs-toggle="modal"
+              class="btn btn-primary p-2 shadow fs-4 fw-bold"
+              data-bs-target="#offerButton"
+            >{{ "AUF " + auction.product.toUpperCase() + " BIETEN" }}</button>
+            <OfferModal
+            :state= this.state
+              :creatorId= this.auction.creatorId
+              :auctionId= this.auction.auctionId
+              offerType= 1
+              :text="'offerexampletest'"
+              :btnText="'Bid Now'"
+              :title="this.auction.product"
+              id="offerButton"
+            />
           </div>
         </div>
         <div v-else>
@@ -55,10 +70,12 @@ import AuctionModal from "../components/AuctionModal.vue";
 import Picture from "../components/atoms/Picture.vue";
 import OfferCard from "../components/molecules/OfferCard.vue";
 import Offer from "../components/molecules/Offer.vue";
+import OfferModal from "../components/OfferModal.vue";
 
 export default {
   name: "CardView",
   components: {
+    OfferModal,
     Modal,
     AuctionModal,
     Picture,
@@ -66,6 +83,19 @@ export default {
     Offer
   },
   props: {
+    state: {
+type: String,
+default: "OPEN",
+    },
+    creatorId: {
+type: Number,
+    },
+    auctionId: {
+type: Number,
+    },
+    offerType: {
+      type: Number
+    },
     product_id: {
       type: String
     },

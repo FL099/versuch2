@@ -305,9 +305,9 @@ export default new Vuex.Store({
         headers: { Authorization: `Bearer ${state.accessToken}` }
       })
         .then((res) => {
-          console.log("offer submitted sucessfully to backend")
+          console.log("offer created and submitted sucessfully to backend")
         })
-        .catch((err) => console.error("error caught whilst submitting offer: ", err))
+        .catch((err) => console.error("error caught whilst submitting create offer: ", err))
     },
     async updateOffer({ commit, state }, offer) {
       await axios.put(baseLink + "/offers/" + offer.id, offer, {
