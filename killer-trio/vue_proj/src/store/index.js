@@ -165,7 +165,7 @@ export default new Vuex.Store({
       console.log("pid:", product.id);
       await axios.put(baseLink + "/products/" + product.id, product, {
         headers: { Authorization: `Bearer ${state.accessToken}` }
-      }).then(
+      }).then( 
         (response) => {
           this.dispatch('getProducts');
         }
