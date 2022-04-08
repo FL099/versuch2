@@ -74,7 +74,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" v-on:click="submitP">Submit</button>
+          <button type="button" class="btn btn-primary"  @click="submitP" data-bs-dismiss="modal" >Create Product</button>
         </div>
       </div>
     </div>
@@ -107,7 +107,7 @@ export default {
       };
     },
     submitP() {
-      this.$store.dispatch("submitForm", this.props);
+      this.$store.dispatch("createProduct", this.product);
     }
   },
 

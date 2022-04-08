@@ -4,6 +4,7 @@
         <div>
         <div class="p-2">
                   <div>
+<div v-if="this.$store.state.loggedIn">
             <button
             id="addProduct"
               data-bs-toggle="modal"
@@ -16,6 +17,7 @@
               :title="'create New product'"
               id="offerButton"
             />
+            </div>
             </div>
             <div>
                 Auf dieser Seite werden sämtliche Produkt Kategorien aufgezeigt. <br />

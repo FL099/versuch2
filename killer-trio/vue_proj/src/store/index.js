@@ -165,7 +165,17 @@ export default new Vuex.Store({
       console.log("pid:", product.id);
       await axios.put(baseLink + "/products/" + product.id, product, {
         headers: { Authorization: `Bearer ${state.accessToken}` }
-      }).then( 
+      }).then(
+        (response) => {
+          this.dispatch('getProducts');
+        }
+      )
+    },
+    async createProduct({ commit, state}, product){
+      console.log("in crete product loop");
+      await axios.post(baseLink + "/products", product, {
+        headers: { Authorization: `Bearer ${state.accessToken}` }
+      }).then(
         (response) => {
           this.dispatch('getProducts');
         }
