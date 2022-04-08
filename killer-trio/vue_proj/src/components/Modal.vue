@@ -115,6 +115,9 @@ export default {
   methods: {
     submitOffer() {
       this.$store.dispatch("createOffer", this.offer);
+    },
+    checkMaxOffer() {
+      console.log(this.$store.state.offers);
     }
   }
 };

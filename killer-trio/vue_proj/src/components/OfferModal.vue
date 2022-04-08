@@ -13,7 +13,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <h6>Id: {{ offer.id }}</h6>
+           <h6>Id: {{ this.test }}</h6>
           <form class="m-5" style="text-align: left;">
             <!--
             <TextInput
@@ -67,12 +67,12 @@ export default {
     return {
       offer: {
         id: this.tid,
-        auctionId: this.auctionId,
+        auctionId: this.test,
         amount: this.amount,
         price: this.price,
         deliveryDate: this.deliveryDate,
         creatorId: this.$store.state.user.id,
-        state: this.state
+        state: "OPEN",
       }
     };
   },
@@ -111,6 +111,9 @@ export default {
     status: {
       type: String,
       default: "Auf Lager"
+    },
+    test : {
+type: String,
     }
   },
   components: {

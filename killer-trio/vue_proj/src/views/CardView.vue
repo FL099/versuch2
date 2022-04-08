@@ -27,22 +27,11 @@
             <button
               data-bs-toggle="modal"
               class="btn btn-primary p-2 shadow fs-4 fw-bold"
-              data-bs-target="#bietenButton"
-            >{{ "AUF " + auction.product.toUpperCase() + " BIETEN" }}</button>
-            <Modal
-              :title="this.auction.product"
-              :text="'offerexampletest'"
-              :btnText="'Bid Now'"
-              :minPrice="this.auctionMinPrice"
-              id="bietenButton"
-            />
-            <button
-              data-bs-toggle="modal"
-              class="btn btn-primary p-2 shadow fs-4 fw-bold"
               data-bs-target="#offerButton"
             >{{ "AUF " + auction.product.toUpperCase() + " BIETEN" }}</button>
             <OfferModal
-            :state= this.state
+            :test ="this.auction.id"
+            state= "OPEN"
               :creatorId= this.auction.creatorId
               :auctionId= this.auction.auctionId
               offerType= 1
@@ -83,6 +72,9 @@ export default {
     Offer
   },
   props: {
+    test: {
+type: Number,
+    },
     state: {
 type: String,
 default: "OPEN",

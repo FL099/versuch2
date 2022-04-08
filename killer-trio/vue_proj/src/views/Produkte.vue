@@ -1,6 +1,6 @@
 <template>
     <div class="px-4">
-        <h1>Produkte</h1>
+        <h1>Produkte <button> + </button></h1>
         <div>
         <div class="p-2">
         Auf dieser Seite werden sämtliche Produkt Kategorien aufgezeigt. <br />

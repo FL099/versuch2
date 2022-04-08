@@ -76,11 +76,11 @@ export default new Vuex.Store({
         }
 
         // if startime isset
-        if (auction.startTime !== null) {
-          let auctionStartTime = new Date(auction.startTime);
-          if (auctionStartTime < currentDate) {
+        if (auction.endTime !== null) {
+          let auctionEndTime = new Date(auction.endTime);
+          if (auctionEndTime < currentDate) {
             // dann ist es eine vergangene auktion
-            console.log("Verganene Auktion: " + auction.startTime);
+            console.log("Verganene Auktion: " + auction.endTime);
             state.pastAuctions.push(auction);
           }
           else {
