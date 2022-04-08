@@ -162,7 +162,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" @click="submitAuction" class="btn btn-primary">{{btnText}}</button>
+          <button type="button" @click="submitAuction" class="btn btn-primary" data-bs-dismiss="modal">{{btnText}}</button>
         </div>
       </div>
     </div>
