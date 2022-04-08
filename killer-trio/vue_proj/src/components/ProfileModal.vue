@@ -48,14 +48,15 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" v-on:click="submitP">Submit</button>
+            <button type="button" class="btn btn-primary" v-on:click="submitP" data-bs-dismiss="modal">Submit</button>
         </div>
         </div>
     </div>
     </div>
 </template>
 
-<script>
+<script>import router from "../router";
+
 
 export default {
   data() {
@@ -83,7 +84,8 @@ export default {
       };
     },
       submitP (){
-      this.$store.dispatch('submitForm', this.form);        
+      this.$store.dispatch('submitForm', this.form);   
+           
     }
   },
 
